@@ -11,10 +11,10 @@ class Match with _$Match {
   const Match._();
 
   const factory Match({
-    @JsonKey(name: 'match_id') required String matchId,
-    @JsonKey(name: 'authoritative') required bool authoritative,
-    @JsonKey(name: 'label') required String label,
-    @JsonKey(name: 'size') required int size,
+    @JsonKey(name: 'match_id') required String? matchId,
+    @JsonKey(name: 'authoritative') required bool? authoritative,
+    @JsonKey(name: 'label') required String? label,
+    @JsonKey(name: 'size') required int? size,
     @JsonKey(name: 'tick_rate') int? tickRate,
     @JsonKey(name: 'handler_name') String? handlerName,
     @JsonKey(name: 'presences') required List<UserPresence> presences,
@@ -29,6 +29,15 @@ class Match with _$Match {
     String? handlerName,
     required List<UserPresence> presences,
   }) = RealtimeMatch;
+
+  factory Match.api({
+    required String matchId,
+    required bool? authoritative,
+    required String? label,
+    required int size,
+    int? tickRate,
+    String? handlerName,
+  }) = APIMatch;
 
   factory Match.fromJson(Map<String, Object?> json) => _$MatchFromJson(json);
 

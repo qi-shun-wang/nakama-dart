@@ -1413,7 +1413,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         query: query,
       );
 
-      return res.matches?.map((e) => model.Match.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return res.matches
+              ?.map((e) => model.Match.fromJson(e.toJson()..addEntries({'runtimeType': 'api'}.entries)))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
